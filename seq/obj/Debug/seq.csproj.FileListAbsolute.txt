@@ -1,0 +1,6 @@
+C:\Users\gubch\RiderProjects\Solution1\seq\bin\Debug\seq.exe
+C:\Users\gubch\RiderProjects\Solution1\seq\bin\Debug\seq.pdb
+C:\Users\gubch\RiderProjects\Solution1\seq\obj\Debug\seq.csprojAssemblyReference.cache
+C:\Users\gubch\RiderProjects\Solution1\seq\obj\Debug\seq.csproj.CoreCompileInputs.cache
+C:\Users\gubch\RiderProjects\Solution1\seq\obj\Debug\seq.exe
+C:\Users\gubch\RiderProjects\Solution1\seq\obj\Debug\seq.pdb

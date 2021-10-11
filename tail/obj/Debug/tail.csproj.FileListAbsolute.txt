@@ -1,0 +1,6 @@
+C:\Users\gubch\RiderProjects\Solution1\tail\bin\Debug\tail.exe
+C:\Users\gubch\RiderProjects\Solution1\tail\bin\Debug\tail.pdb
+C:\Users\gubch\RiderProjects\Solution1\tail\obj\Debug\tail.csprojAssemblyReference.cache
+C:\Users\gubch\RiderProjects\Solution1\tail\obj\Debug\tail.csproj.CoreCompileInputs.cache
+C:\Users\gubch\RiderProjects\Solution1\tail\obj\Debug\tail.exe
+C:\Users\gubch\RiderProjects\Solution1\tail\obj\Debug\tail.pdb
