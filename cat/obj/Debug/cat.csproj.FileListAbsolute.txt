@@ -1,0 +1,6 @@
+C:\Users\gubch\RiderProjects\Solution1\cat\bin\Debug\cat.exe
+C:\Users\gubch\RiderProjects\Solution1\cat\bin\Debug\cat.pdb
+C:\Users\gubch\RiderProjects\Solution1\cat\obj\Debug\cat.csprojAssemblyReference.cache
+C:\Users\gubch\RiderProjects\Solution1\cat\obj\Debug\cat.csproj.CoreCompileInputs.cache
+C:\Users\gubch\RiderProjects\Solution1\cat\obj\Debug\cat.exe
+C:\Users\gubch\RiderProjects\Solution1\cat\obj\Debug\cat.pdb

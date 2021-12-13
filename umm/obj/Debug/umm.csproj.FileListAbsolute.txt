@@ -1,0 +1,6 @@
+C:\Users\gubch\RiderProjects\Solution1\umm\bin\Debug\umm.exe
+C:\Users\gubch\RiderProjects\Solution1\umm\bin\Debug\umm.pdb
+C:\Users\gubch\RiderProjects\Solution1\umm\obj\Debug\umm.csprojAssemblyReference.cache
+C:\Users\gubch\RiderProjects\Solution1\umm\obj\Debug\umm.csproj.CoreCompileInputs.cache
+C:\Users\gubch\RiderProjects\Solution1\umm\obj\Debug\umm.exe
+C:\Users\gubch\RiderProjects\Solution1\umm\obj\Debug\umm.pdb
