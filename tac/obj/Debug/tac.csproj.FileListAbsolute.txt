@@ -1,0 +1,6 @@
+C:\Users\gubch\RiderProjects\Solution1\tac\bin\Debug\tac.exe
+C:\Users\gubch\RiderProjects\Solution1\tac\bin\Debug\tac.pdb
+C:\Users\gubch\RiderProjects\Solution1\tac\obj\Debug\tac.csprojAssemblyReference.cache
+C:\Users\gubch\RiderProjects\Solution1\tac\obj\Debug\tac.csproj.CoreCompileInputs.cache
+C:\Users\gubch\RiderProjects\Solution1\tac\obj\Debug\tac.exe
+C:\Users\gubch\RiderProjects\Solution1\tac\obj\Debug\tac.pdb

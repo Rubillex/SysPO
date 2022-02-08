@@ -1,0 +1,6 @@
+C:\Users\gubch\RiderProjects\Solution1\numfmt\bin\Debug\numfmt.exe
+C:\Users\gubch\RiderProjects\Solution1\numfmt\bin\Debug\numfmt.pdb
+C:\Users\gubch\RiderProjects\Solution1\numfmt\obj\Debug\numfmt.csprojAssemblyReference.cache
+C:\Users\gubch\RiderProjects\Solution1\numfmt\obj\Debug\numfmt.csproj.CoreCompileInputs.cache
+C:\Users\gubch\RiderProjects\Solution1\numfmt\obj\Debug\numfmt.exe
+C:\Users\gubch\RiderProjects\Solution1\numfmt\obj\Debug\numfmt.pdb

@@ -1,0 +1,6 @@
+C:\Users\gubch\RiderProjects\Solution1\Va-Tor\bin\Debug\Va_Tor.exe
+C:\Users\gubch\RiderProjects\Solution1\Va-Tor\bin\Debug\Va_Tor.pdb
+C:\Users\gubch\RiderProjects\Solution1\Va-Tor\obj\Debug\Va-Tor.csprojAssemblyReference.cache
+C:\Users\gubch\RiderProjects\Solution1\Va-Tor\obj\Debug\Va-Tor.csproj.CoreCompileInputs.cache
+C:\Users\gubch\RiderProjects\Solution1\Va-Tor\obj\Debug\Va_Tor.exe
+C:\Users\gubch\RiderProjects\Solution1\Va-Tor\obj\Debug\Va_Tor.pdb

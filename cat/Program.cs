@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using System.Collections.Generic;
+using System.Text;
 
 namespace cat
 {
@@ -9,19 +10,34 @@ namespace cat
     {
         public static void outputFunc(string path, string key)
         {
-            Console.WriteLine("path: " + path + " key: " + key);
+            // Console.WriteLine("path: " + path + " key: " + key);
             List<String> textFromFile = new List<string>();
             string output = "";
             var numLine = 1;
-            StreamReader file = new StreamReader(path);
-            string line;
-            while ((line = file.ReadLine()) != null)
+            
+            byte[] buffer = File.ReadAllBytes(path);
+
+            string[] h = buffer.Select(x => x.ToString("x2")).ToArray();
+            string hex = string.Concat(h);
+
+            string[] hexBytes = new string[hex.Length / 2];
+            for (int i = 0; i < hexBytes.Length; i++)
+            {
+                hexBytes[i] = hex.Substring(i * 2, 2);
+            }
+            byte[] resultBytes = hexBytes.Select(value => Convert.ToByte(value, 16)).ToArray();
+            string result = Encoding.UTF8.GetString(resultBytes);
+
+            string[] lines = result.Split('\n');
+
+            foreach (var line in lines)
             {
                 switch (key)
                 {
                     //нумерация непустых строк
                     case "-b":
-                        if (line != "")
+                        //если в строке больше чем один символ
+                        if (line.Length != 1)
                         {
                             output += numLine;
                             numLine++;
@@ -29,6 +45,26 @@ namespace cat
                             output += line;
                             textFromFile.Add(output);
                             output = "";
+                        }
+                        else
+                        {
+                            //если строка не последняя
+                            if (line != lines[lines.Length - 1])
+                            {
+                                output += line;
+                                textFromFile.Add(output);
+                                output = "";
+                            }
+                            //если строка последняя
+                            else
+                            {
+                                output += numLine;
+                                numLine++;
+                                output += " ";
+                                output += line;
+                                textFromFile.Add(output);
+                                output = "";
+                            }
                         }
                         break;
                     //нумерация каждой строки
@@ -43,23 +79,44 @@ namespace cat
                     //удаление повторяющихся пустых строк
                     case "-s":
                         output += line;
-                        if (output == textFromFile.Last() && output == "")
+                        if (textFromFile.Count > 0)
                         {
-                            textFromFile.RemoveAt(textFromFile.Count);
+                            if (output == textFromFile.Last() 
+                                && output.Length == 1 
+                                && output != lines[lines.Length - 1])
+                            {
+                                textFromFile.RemoveAt(textFromFile.Count-1);
+                            }
+                            else
+                            {
+                                textFromFile.Add(output);
+                            }
                         }
                         else
                         {
                             textFromFile.Add(output);
                         }
-
                         output = "";
                         break;
                     //$ в конце каждой строки
                     case "-e":
-                        output += line;
-                        output += "$";
-                        textFromFile.Add(output);
-                        output = "";
+                        StringBuilder tempLine = new StringBuilder(line);
+                        if (line != lines[lines.Length - 1])
+                        {
+                            tempLine[tempLine.Length - 1] = '$';
+                            Console.WriteLine(tempLine);
+                        }
+                        else
+                        {
+                            tempLine.Append("$");
+                            Console.WriteLine(tempLine);
+                        }
+                        
+                        break;
+                    case "-t":
+                        StringBuilder tempLine_t = new StringBuilder(line);
+                        tempLine_t.Replace("\t", "^I");
+                        Console.WriteLine(tempLine_t);
                         break;
                     case "":
                         output += line;
@@ -68,49 +125,36 @@ namespace cat
                         break;
                 }
             }
-            Console.WriteLine("Вывод");
             //вывод
+            
             foreach (var lineFromList in textFromFile)
             {
                 Console.WriteLine(lineFromList);
             }
+            textFromFile.Clear();
         }
 
-        public static void outToFile(List<string> path, string newFile)
+        public static void help()
         {
-            if (File.Exists(newFile))
-            {
-                foreach (var filename in path)
-                {
-                    using (var writer = new StreamWriter(newFile))
-                    {
-                        StreamReader file = new StreamReader(filename);
-                        string line;
-                        while ((line = file.ReadLine()) != null)
-                        {
-                            writer.WriteLine(line);
-                        }
-                    }
-                }
-            }
-            else
-            {
-                File.Create(newFile);
-                foreach (var filename in path)
-                {
-                    using (var writer = new StreamWriter(newFile))
-                    {
-                        StreamReader file = new StreamReader(filename);
-                        string line;
-                        while ((line = file.ReadLine()) != null)
-                        {
-                            writer.WriteLine(line);
-                        }
-                    }
-                }
-            }
+            Console.WriteLine("{0,-5}   {1,-35}","-b", "нумерует только непустые строки");
+            Console.WriteLine("{0,-5}   {1,-35}","-E", "показывает символ $ в конце каждой строки");
+            Console.WriteLine("{0,-5}   {1,-35}","-n", "нумерует все строки");
+            Console.WriteLine("{0,-5}   {1,-35}","-s", "удаляет пустые повторяющиеся строки");
+            Console.WriteLine("{0,-5}   {1,-35}","-T", "отображает табуляции в виде ^I");
+            Console.WriteLine("{0,-5}   {1,-35}","--help", "справка");
+            Console.WriteLine("{0,-5}   {1,-35}","--version", "версия");
         }
 
+        public static void version()
+        {
+            Console.WriteLine("cat (GNU coreutils) 8.30" + "\n" +
+                              "Copyright (C) 2018 Free Software Foundation, Inc." + "\n" +
+                              "License GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>." + "\n" +
+                              "This is free software: you are free to change and redistribute it. +" + "\n" +
+                              "There is NO WARRANTY, to the extent permitted by law."+ "\n" +
+                              "\n" +
+                              "Written by Torbjorn Granlund and Richard M. Stallman.");
+        }
         public static void Main(string[] args)
         {
             if (args.Length == 0)
@@ -123,54 +167,34 @@ namespace cat
             {
                 //вывод одного или нескольких файлов по очереди
                 var key = "";
-                List<string> filePath = new List<string>();
 
-                //перенаправление ввода в файл
-                if (args.Length == 3)
-                {
-                    if (args[1] == ">"
-                        && args[2] != "")
-                    {
-                        var read = Console.Read();
-                        if (File.Exists(args[2]))
-                        {
-                            using (var writer = new StreamWriter(args[2]))
-                            {
-                                writer.WriteLine(read);
-                            }
-                        }
-                        else
-                        {
-                            File.Create(args[2]);
-                            using (var writer = new StreamWriter(args[2]))
-                            {
-                                writer.WriteLine(read);
-                            }
-                        }
-                        return;
-                    }
-                }
+                bool v = false;
+                bool h = false;
                 
-                //перенаправление содержимого файла/файлов в файл
-                foreach (var arg in args)
+                foreach (var keys in args)
                 {
-                    Console.WriteLine("Перенаправление");
-                    var index = args.ToList().IndexOf(arg);
-                    if (File.Exists(arg))
+                    if (keys == "--version")
                     {
-                        filePath.Add(arg);
+                        v = true;
+                        if (!h)
+                        {
+                            version();
+                        }
                     }
 
-                    if (arg == ">")
+                    if (keys == "--help")
                     {
-                        outToFile(filePath, args[index + 1]);
-                        return;
+                        h = true;
+                        if (!v)
+                        {
+                            help();
+                        }
                     }
                 }
+
 
                 foreach (var filename in args)
                 {
-                    Console.WriteLine("вывод");
                     //если ключ перенаправления то пишем вывод в файл после этого ключа и выходим из программы
 
                     if (args[0].ToLower() == "-b")
@@ -193,9 +217,12 @@ namespace cat
                         key = "-e";
                     }
 
-                    if (File.Exists(filename)
-                        && filename != "cat"
-                        && filename != key)
+                    if (args[0].ToLower() == "-t")
+                    {
+                        key = "-t";
+                    }
+
+                    if (File.Exists(filename))
                     {
                         outputFunc(filename, key);
                     }
@@ -205,10 +232,6 @@ namespace cat
                         string read = "";
                         read = Console.ReadLine();
                         Console.WriteLine(read);
-                    }
-                    else
-                    {
-                        return;
                     }
                 }
             }

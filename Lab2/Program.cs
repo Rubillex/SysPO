@@ -1,56 +1,54 @@
 ﻿using System;
 using System.Threading;
-
-namespace Lab2
+namespace ConsoleApplication1
 {
-    internal class Program
-            {
-                public static int t = 0;
-                
-                public static void Main(string[] args)
-                {
-                    //запуск потока 2
-                    new Thread(secondFunc).Start();
-                    Console.Read();
-                }
-                
-                static void firstFunc()
-                {
-                    //простой рассчёт f по формуле
-                    double f;
-                    while (true)
-                    {
-                        f = Math.Sin((2*Math.PI*t)/200);
-                        Console.Out.WriteLine("t: " + t + " f: " + f);   
-                        t++;
-                    }
-                }
+    internal class Program {
+        public static int t = 0;
         
-                static void secondFunc()
-                {
-                    //счётчик обнулений
-                    int num = 0;
-                    //запуск первого потока
-                    var first = new Thread(firstFunc);
-                    first.Start();
-                    //ВАЙЛТРУ
-                    while (true) 
-                    {
-                        if (t == 50)
-                        {
-                            //выбираем убить поток 1 или остановить
-                            if (num == 9) first.Abort();
-                            else first.Suspend();
-                            //обнуление и инкремент счётчика обнулений
-                            t = 0;
-                            num++;
-                            //вывод в stderr
-                            Console.Error.WriteLine("Прервал num:" + num);
-                            //выход из потока 2 или восстановление потока 1
-                            if (num == 10) return;
-                            if (num != 10) first.Resume();
-                        }
+        public static int random(int a, int b)
+        {
+            Random rnd = new Random();
+            return  rnd.Next(a, b);
+        }
+        
+        public static void Main(string[] args) {
+            Random rnd = new Random();
+            for (int i = 0; i < 20; i++)
+            {
+                
+                Console.WriteLine(rnd.Next(0, 10));
+            }
+            
+        }
+        static void first() {
+            double f;
+            while (true) {
+                f = Math.Sin((2*Math.PI*t)/200);
+                Console.Out.WriteLine("t=" + t + " f=" + f);
+                t++;
+            }
+        }
+        static void sec() {
+
+            int num = 0;
+
+            var first = new Thread(Program.first);
+            first.Start();
+
+            while (true) {
+                if (t == 50) {
+                    if (num == 9) first.Abort();
+                    else first.Suspend();
+                    t = 0;
+                    num++;
+                    Console.Error.WriteLine("Прерываний " + num);
+                    if (num == 10) {
+                        Console.WriteLine("Закончил работу");
+                        return;
                     }
+                    else first.Resume();
                 }
             }
+        }
+    }
 }

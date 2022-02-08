@@ -1,0 +1,6 @@
+C:\Users\gubch\RiderProjects\Solution1\fold\bin\Debug\fold.exe
+C:\Users\gubch\RiderProjects\Solution1\fold\bin\Debug\fold.pdb
+C:\Users\gubch\RiderProjects\Solution1\fold\obj\Debug\fold.csprojAssemblyReference.cache
+C:\Users\gubch\RiderProjects\Solution1\fold\obj\Debug\fold.csproj.CoreCompileInputs.cache
+C:\Users\gubch\RiderProjects\Solution1\fold\obj\Debug\fold.exe
+C:\Users\gubch\RiderProjects\Solution1\fold\obj\Debug\fold.pdb

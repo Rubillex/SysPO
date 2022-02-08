@@ -1,0 +1,6 @@
+C:\Users\gubch\RiderProjects\Solution1\sleep\bin\Debug\sleep.exe
+C:\Users\gubch\RiderProjects\Solution1\sleep\bin\Debug\sleep.pdb
+C:\Users\gubch\RiderProjects\Solution1\sleep\obj\Debug\sleep.csprojAssemblyReference.cache
+C:\Users\gubch\RiderProjects\Solution1\sleep\obj\Debug\sleep.csproj.CoreCompileInputs.cache
+C:\Users\gubch\RiderProjects\Solution1\sleep\obj\Debug\sleep.exe
+C:\Users\gubch\RiderProjects\Solution1\sleep\obj\Debug\sleep.pdb
